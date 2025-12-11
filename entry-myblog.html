@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>&quot;My Blog&quot; - Felipe&#039;s Blog</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-color: #0f172a;
+            color: #e2e8f0;
+        }
+        .markdown-content {
+            line-height: 1.8;
+            color: #e2e8f0;
+        }
+        .markdown-content h1 { 
+            font-size: 2.25rem;
+            font-weight: 700;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: #f1f5f9;
+            line-height: 1.2;
+        }
+        .markdown-content h2 { 
+            font-size: 1.875rem;
+            font-weight: 600;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: #f1f5f9;
+            line-height: 1.3;
+        }
+        .markdown-content h3 { 
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-top: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: #f1f5f9;
+            line-height: 1.4;
+        }
+        .markdown-content h4 { 
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+            color: #f1f5f9;
+        }
+        .markdown-content p { 
+            margin-bottom: 1rem;
+            color: #e2e8f0;
+        }
+        .markdown-content ul, .markdown-content ol { 
+            margin-bottom: 1rem;
+            margin-left: 1.5rem;
+            color: #e2e8f0;
+        }
+        .markdown-content ul {
+            list-style-type: disc;
+        }
+        .markdown-content ol {
+            list-style-type: decimal;
+        }
+        .markdown-content li { 
+            margin-bottom: 0.5rem;
+            color: #e2e8f0;
+        }
+        .markdown-content li > p {
+            margin-bottom: 0.5rem;
+        }
+        .markdown-content strong {
+            font-weight: 700;
+            color: #f1f5f9;
+        }
+        .markdown-content em {
+            font-style: italic;
+        }
+        .markdown-content code { 
+            background-color: #1e293b;
+            color: #fbbf24;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            font-size: 0.875rem;
+            font-family: 'Courier New', monospace;
+        }
+        .markdown-content pre { 
+            background-color: #1e293b;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+            overflow-x: auto;
+            border: 1px solid #334155;
+        }
+        .markdown-content pre code { 
+            background-color: transparent;
+            color: #e2e8f0;
+            padding: 0;
+            font-size: 0.875rem;
+        }
+        .markdown-content a { 
+            color: #60a5fa;
+            text-decoration: underline;
+        }
+        .markdown-content a:hover { 
+            color: #93c5fd;
+        }
+        .markdown-content blockquote { 
+            border-left: 4px solid #475569;
+            padding-left: 1rem;
+            font-style: italic;
+            margin: 1rem 0;
+            color: #cbd5e1;
+        }
+        .markdown-content hr {
+            border: none;
+            border-top: 1px solid #475569;
+            margin: 2rem 0;
+        }
+        .markdown-content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+        .markdown-content th,
+        .markdown-content td {
+            border: 1px solid #475569;
+            padding: 0.5rem;
+            text-align: left;
+        }
+        .markdown-content th {
+            background-color: #1e293b;
+            font-weight: 600;
+            color: #f1f5f9;
+        }
+        .markdown-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 0.5rem;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-slate-900 text-slate-200">
+    <div class="container mx-auto px-4 py-8 max-w-4xl">
+        <!-- Back Button -->
+        <a href="index.html" class="inline-flex items-center mb-8 text-slate-400 hover:text-slate-200 transition-colors">
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+            </svg>
+            Back to Blog
+        </a>
+
+        <!-- Entry Content -->
+        <article class="bg-slate-800 border border-slate-700 rounded-lg p-8">
+            <div class="markdown-content">
+                <h1>My Blog</h1>
+<p>This is a test</p>
+<pre><code class="language-javascript">let result = &quot;&quot;;
+
+function compareResponses(formData, rightResponses) {
+    let differences = [];
+
+    const userAnswers = {};
+    formData.TicketData.Attributes.forEach(attr =&gt; {
+        // The correct answer for the question determines if we should treat the value as an array
+        if (Array.isArray(rightResponses.Response[attr.Name])) {
+            // The value is a string like &quot;55237, 55235, 55232&quot;
+            // We split it into an array and sort it for comparison.
+            userAnswers[attr.Name] = attr.Value.split(&#39;, &#39;).sort();
+        } else {
+            userAnswers[attr.Name] = attr.Value;
+        }
+    });
+
+    for (let key in rightResponses.Response) {
+        if (Object.prototype.hasOwnProperty.call(rightResponses.Response, key)) {
+            let userAnswer = userAnswers[key];
+            let rightResponse = rightResponses.Response[key];
+
+            if (Array.isArray(rightResponse)) {
+                // Also sort the correct answer array to ensure a match.
+                let rightResponseSorted = [...rightResponse].sort();
+                if (JSON.stringify(userAnswer) !== JSON.stringify(rightResponseSorted)) {
+                    differences.push(`&lt;br&gt;&lt;span&gt;Question ${key.substring(27)}. Must be answered correctly.&lt;/span&gt;`);
+                }
+            } else if (userAnswer !== rightResponse) {
+              differences.push(`&lt;br&gt;&lt;span&gt;Question ${key.substring(27)}. Must be answered correctly.&lt;/span&gt;`);
+            }
+        }
+    }
+
+    if (differences.length === 0) {
+        result = &quot;&lt;strong&gt;You passed the Essential Training Quiz.&lt;/strong&gt;&lt;br&gt;&quot;;
+    } else {
+        result = `&lt;br&gt;&lt;strong&gt;Please review the following answers:&lt;/strong&gt;&lt;br&gt;`;
+        result += differences.join(&quot;\n&quot;);
+    }
+}
+
+compareResponses(FlowInput, quizResponses);
+
+
+
+
+let result = `&lt;br&gt;&lt;br&gt;&lt;span&gt;RETAKE HERE: &lt;a href=&quot;https://td.byui.edu/TDClient/78/Portal/KB/ArticleDet?ID=10103&quot;&gt;FACTA Essential Training Quiz&lt;\a&gt;&lt;\span&gt;`;
+</code></pre>
+
+            </div>
+        </article>
+    </div>
+</body>
+</html>
+
